@@ -1,0 +1,30 @@
+<h3 class="xcale-title" nz-typography>
+  {{ roverName | titlecase }} rover pictures
+</h3>
+
+<nz-button-group class="xcale-buttongroup">
+  <button nz-button (click)="getRoverPictures('curiosity')">
+    {{ "curiosity" | titlecase }}
+  </button>
+  <button nz-button (click)="getRoverPictures('opportunity')">
+    {{ "opportunity" | titlecase }}
+  </button>
+  <button nz-button (click)="getRoverPictures('spirit')">
+    {{ "spirit" | titlecase }}
+  </button>
+</nz-button-group>
+
+<div class="xcale-spinner_container" *ngIf="showSpinner">
+  <nz-spin [nzSize]="'large'" nzSimple></nz-spin>
+</div>
+<div *ngIf="!showSpinner" nz-row [nzGutter]="[16, 24]">
+  <div *ngFor="let rover of rovers" nz-col nzSpan="6">
+    <nz-card nzHoverable style="width: 240px" [nzCover]="coverTemplate">
+      <nz-card-meta [nzTitle]="rover.earth_date + '-' + rover.id">
+      </nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img alt="example" [src]="rover.img_src" />
+    </ng-template>
+  </div>
+</div>
