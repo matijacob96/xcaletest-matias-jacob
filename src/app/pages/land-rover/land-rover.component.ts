@@ -10,16 +10,15 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./land-rover.component.scss'],
 })
 export class LandRoverComponent implements OnInit {
-  subscription = new Subscription();
   rovers: Photo[];
   showSpinner = false;
-  lrName = 'C';
-  roverName = 'spirit';
+  roverName: string = '';
 
   constructor(private lrService: LandRoverService) {}
 
   ngOnInit(): void {
-    this.getRoverPictures();
+    this.roverName = 'spirit';
+    this.getRoverPictures('spirit');
   }
 
   getRoverPictures(name?: string) {
